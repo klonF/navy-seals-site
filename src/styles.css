@@ -1,0 +1,215 @@
+/* Общие стили для всех устройств */
+:root {
+  --primary-color: #fff;
+  --accent-color: #00ffff;
+  --text-color: #f0f0f0;
+  --shadow-color: rgba(0, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #1a1a1a; /* Тёмный фон для контраста */
+  color: var(--text-color);
+}
+
+.blinking {
+  color: #ff007f; /* ярко-розовый, можешь изменить */
+  animation: blink 1s infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
+/* Стили для ПК (экраны > 768px) */
+.page {
+  max-width: 1200px;
+  margin: clamp(1.5rem, 3vw, 2rem) auto;
+  padding: clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+  box-shadow: 0 0 30px var(--shadow-color);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.page h2 {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  margin-bottom: 1rem;
+}
+
+.page p,
+.page ul {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.page ul {
+  list-style: none;
+}
+
+.page ul li {
+  padding: 0.5rem 0;
+}
+
+.page-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  max-width: 1250px;
+  margin: clamp(1.5rem, 3vw, 2rem) auto;
+  padding: 1rem;
+}
+
+.gallery-grid {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.8rem, 2vw, 1rem);
+  margin: 2rem auto;
+}
+
+.gallery-grid img,
+.gallery-grid video {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Сохраняет пропорции */
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(26, 26, 26, 0.9);
+}
+
+.logo {
+  font-size: clamp(1.6rem, 3vw, 1.8rem);
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.nav-list a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  transition: color 0.3s ease;
+}
+
+.nav-list a:hover {
+  color: var(--accent-color);
+}
+
+.footer {
+  text-align: center;
+  padding: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  margin-top: auto;
+  background: rgba(26, 26, 26, 0.9);
+}
+
+/* Стили для телефонов (экраны ≤ 768px) */
+@media (max-width: 768px) {
+  .page {
+    max-width: 100%;
+    margin: 1rem auto;
+    padding: 0.8rem;
+    border-radius: 8px;
+  }
+
+  .page h2 {
+    font-size: clamp(1.4rem, 5vw, 1.6rem);
+  }
+
+  .page p,
+  .page ul {
+    font-size: clamp(0.8rem, 4vw, 0.9rem);
+  }
+
+  .page-container {
+    grid-template-columns: 1fr; /* Один столбец */
+    gap: 0.5rem;
+    padding: 0.5rem;
+    margin: 0.5rem auto;
+  }
+
+  .gallery-grid {
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem auto;
+  }
+
+  .gallery-grid img,
+  .gallery-grid video {
+    aspect-ratio: 4 / 3; /* Более квадратные пропорции для телефонов */
+  }
+
+  .header {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .logo {
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-list a {
+    font-size: clamp(0.7rem, 3vw, 0.8rem);
+    padding: 0.5rem; /* Увеличена область нажатия */
+    display: block;
+  }
+
+  .footer {
+    font-size: clamp(0.6rem, 3vw, 0.7rem);
+    padding: 0.5rem;
+  }
+}
+
+/* Для очень маленьких экранов (≤ 480px) */
+@media (max-width: 480px) {
+  .page h2 {
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
+  }
+
+  .page p,
+  .page ul {
+    font-size: clamp(0.7rem, 3vw, 0.8rem);
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr; /* Один элемент в строке */
+  }
+
+  .nav-list a {
+    font-size: clamp(0.6rem, 3vw, 0.7rem);
+  }
+}
